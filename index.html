@@ -1,4 +1,144 @@
 ---
-layout: home
-author_profile: true
+layout: none
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slobodan Bogdanovic — Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f6;
+      --text: #1a1a18;
+      --muted: #6b6b66;
+      --border: #e2e1dc;
+      --link: #2a5caa;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 0 5rem;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .links a:hover { color: var(--text); }
+
+    .links a::before { content: '↗ '; font-size: 0.72rem; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .post-list { list-style: none; }
+
+    .post-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+    }
+
+    .post-item:first-child { border-top: 1px solid var(--border); }
+
+    .post-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .post-title a {
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+
+    .post-title a:hover { color: var(--link); }
+
+    .empty { font-size: 0.9rem; color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <p class="name">Slobodan Bogdanovic</p>
+      <p class="tagline">QA Lead · Test Automation · Agile Delivery<br>Writing about software quality and engineering.</p>
+      <div class="links">
+        <a href="https://github.com/SlobodanBogdanovic" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/bogdanovics" target="_blank">LinkedIn</a>
+      </div>
+    </header>
+    <main>
+      <p class="section-label">Posts</p>
+      <ul class="post-list">
+        {% for post in site.posts %}
+        <li class="post-item">
+          <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+          <span class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></span>
+        </li>
+        {% else %}
+        <li class="empty">No posts yet.</li>
+        {% endfor %}
+      </ul>
+    </main>
+  </div>
+</body>
+</html>
