@@ -8,7 +8,8 @@ plugins:
 title: "Slobodan Bogdanovic"
 name: "Slobodan Bogdanovic"
 description: "QA Lead | Test Automation | Agile Delivery"
-url: "https://yourusername.github.io" # replace with your actual GitHub username
+url: "https://slobodanbogdanovic.github.io"
+baseurl: "/blog"
 
 author:
   name: "Slobodan Bogdanovic"
@@ -17,14 +18,12 @@ author:
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/yourprofile" # replace with yours
+      url: "https://www.linkedin.com/in/bogdanovics"
 
-# Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
 
-# Defaults
 defaults:
   - scope:
       path: ""
@@ -35,11 +34,5 @@ defaults:
       read_time: true
       show_date: true
 
-# Pagination
 paginate: 5
 paginate_path: /page:num/
-
-# Collections
-collections:
-  posts:
-    output: true
