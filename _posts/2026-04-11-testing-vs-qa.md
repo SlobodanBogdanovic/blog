@@ -1,6 +1,7 @@
 ---
 title: "Testing vs. QA: Feedback vs. Process"
 date: 2026-04-11
+layout: post
 categories:
   - Quality Engineering
 tags:
