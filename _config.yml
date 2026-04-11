@@ -1,0 +1,45 @@
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+plugins:
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+
+title: "Slobodan Bogdanovic"
+name: "Slobodan Bogdanovic"
+description: "QA Lead | Test Automation | Agile Delivery"
+url: "https://yourusername.github.io" # replace with your actual GitHub username
+
+author:
+  name: "Slobodan Bogdanovic"
+  bio: "QA Lead, Test Automation, Agile Delivery. Writing about software quality, engineering, and delivery."
+  location: "Serbia"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/yourprofile" # replace with yours
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      show_date: true
+
+# Pagination
+paginate: 5
+paginate_path: /page:num/
+
+# Collections
+collections:
+  posts:
+    output: true
