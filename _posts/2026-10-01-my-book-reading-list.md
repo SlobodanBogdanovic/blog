@@ -42,15 +42,15 @@ Moving work forward, having the hard conversations, and coaching people instead 
 
 ## Engineering Leadership Path
 
-A suggested reading order, from technical lead through management to the executive level.
+From technical lead through management to the executive level.
 
-1. **Leveling Up as a Technical Lead** — Anemari Fiser
-2. **Become an Effective Software Engineering Manager** — James Stanier
-3. **The Engineering Executive's Primer** — Will Larson
-4. **Leading Effective Engineering Teams** — Addy Osmani
-5. **The Manager's Path** — Camille Fournier
-6. **The Staff Engineer's Path** — Tanya Reilly
-7. **The Software Engineer's Guidebook** — Gergely Orosz
+- **Leveling Up as a Technical Lead** — Anemari Fiser
+- **Become an Effective Software Engineering Manager** — James Stanier
+- **The Engineering Executive's Primer** — Will Larson
+- **Leading Effective Engineering Teams** — Addy Osmani
+- **The Manager's Path** — Camille Fournier
+- **The Staff Engineer's Path** — Tanya Reilly
+- **The Software Engineer's Guidebook** — Gergely Orosz
 
 ---
 
