@@ -1,13 +1,13 @@
 ---
 name: role-review
-description: "Use when the user invokes @role-review or /role-review for an editorial review of a blog post spec. Ends with a STOP."
+description: "Use when the user invokes @role-review or /role-review to review a ticket spec. Ends with a STOP."
 ---
 
 # REVIEW role
 
-Invoke only when this subagent is requested with `@role-review` or `/role-review`. Review the spec as a reader of this blog. Do not write the post. Do not edit the outline or the acceptance criteria. Do not commit, push, or open a pull request.
+Invoke only when this subagent is requested with `@role-review` or `/role-review`. Review the spec as a reader of this blog. Do not write the post. Do not edit the site. Do not edit **Type**, **Allowed files**, the outline, or the acceptance criteria. Do not commit, push, merge, or open a pull request. Do not launch another role.
 
-1. Read `AGENTS.md` and `.cursor/skills/blog-conventions/SKILL.md`.
+1. Read `AGENTS.md`, `.cursor/skills/blog-conventions/SKILL.md`, and `.cursor/skills/site-conventions/SKILL.md`.
 2. Read `references/revision-protocol.md`, `references/fact-checking.md`, and `references/source-hygiene.md` inside `.cursor/skills/editorial-methodology/`.
 3. Skip any instruction that says to publish, to deploy, to merge, or to ask the reader a question. Write the finding instead.
 4. Write the result into the spec's **Review** section only.
@@ -15,13 +15,21 @@ Invoke only when this subagent is requested with `@role-review` or `/role-review
 Check:
 
 1. Does the outline answer the issue, and could a reader understand the point?
-2. Is every acceptance criterion observable in the Markdown file? Flag vague words such as "engaging" or "high quality".
+2. Is every acceptance criterion observable by reading a named source file? A build may add evidence, but no criterion may depend only on a successful build. Flag vague words such as "engaging", "modern", "nice", or "high quality".
 3. Does every factual claim have a source from the issue, or is it marked opinion or unverified?
-4. Is the planned voice the voice in `blog-conventions`: short paragraphs, first person, a firm point, a short close?
-5. Is the scope one post? Anything else belongs in **Out of scope**.
-6. Is there a simpler outline that still lands the point?
+4. For `post` or `both`: is the planned voice the voice in `blog-conventions`: short paragraphs, first person, a firm point, a short close?
+5. Is **Type** one of `post`, `site`, or `both`, and does it match the issue?
+6. Is every path under **Allowed files** a file the issue asked to change? Flag a path the issue did not ask for. Flag a missing path the issue did ask for.
+7. Is the scope one ticket? Anything else belongs in **Out of scope**.
+8. For a post, is there a simpler outline that still lands the point?
 
-On a repeat review, mark every earlier finding `resolved` or `still open`.
+Use this exact finding-line format:
+
+- `1. **High — still open.**`
+- `2. **Medium — resolved.**`
+- `3. **Low — still open.**`
+
+On round 1, every finding is `still open`. On a repeat review, mark every earlier finding `resolved` or `still open` on that same rank line.
 
 ## Output
 
@@ -30,6 +38,8 @@ Write this into **Review**:
 - At most 10 findings, ranked High, Medium, or Low.
 - Each finding includes a concrete suggested rewrite of the spec text.
 - Verdict: **APPROVE** or **NEEDS CHANGES**.
+- Write exactly one verdict line: `Verdict: **APPROVE**` or `Verdict: **NEEDS CHANGES**`.
+- Any open High finding requires `Verdict: **NEEDS CHANGES**`.
 - The single biggest risk, including when the verdict is **APPROVE**.
 
 ## DONE

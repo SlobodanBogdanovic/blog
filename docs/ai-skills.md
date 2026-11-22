@@ -1,6 +1,6 @@
 # AI skills register
 
-Third-party skills are guidance. `AGENTS.md` and `.cursor/skills/blog-conventions/SKILL.md` win when they disagree.
+Third-party skills are guidance. `AGENTS.md` and the project skills `blog-conventions`, `site-conventions`, and `site-verification` win when they disagree.
 
 Vetting for a third-party skill:
 
@@ -19,7 +19,7 @@ Vetting for a third-party skill:
 - License: project-authored
 - Date added: 2026-11-21
 - Reason: no catalog skill knows `_posts/` or the existing posts
-- Review: written for this repo. Both roles read it before the third-party skill.
+- Review: written for this repo. `role-spec`, `role-review`, and `role-write` read it before the third-party skill. `role-frontend` follows `site-conventions` for site files.
 
 ### editorial-methodology
 
@@ -32,11 +32,31 @@ Vetting for a third-party skill:
 - Reason: one editorial skill for spec, review, and the draft. The repo has about 340 stars. It is archived, so the SHA stays pinned.
 - Review: read `SKILL.md` and all five files in `references/`. The skill is a short process plus those notes. It does not download further rules, run an install script, ask for a secret, or tell the agent to override `AGENTS.md`. The publish step in the lifecycle is not followed. Opening the pull request ends the run.
 
+### site-conventions
+
+- Topic: the home page, the post layout, the unused remote theme, and which role may edit which file
+- Source: this repo
+- License: project-authored
+- Date added: 2026-11-22
+- Reason: no catalog skill knows this home page or the split between `index.html` and the Minimal Mistakes setting in `_config.yml`
+- Review: written for this repo. `role-spec`, `role-review`, and `role-frontend` read it. It does not download further rules or ask for a secret.
+
+### site-verification
+
+- Topic: the checks that run after a ticket is implemented, and the commands that must not publish
+- Source: this repo
+- License: project-authored
+- Date added: 2026-11-22
+- Reason: the catalog checks are for other generators, or they end in a publish step
+- Review: written for this repo. `role-test` reads it. A local Jekyll build is a check. Deploy, serve, and merge are not.
+
 Who reads which file:
 
-- `role-spec` reads `references/article-structures.md` and `references/voice-reference.md`.
-- `role-review` reads `references/revision-protocol.md`, `references/fact-checking.md`, and `references/source-hygiene.md`.
-- The orchestrator, when it writes the post, reads `references/voice-reference.md` and `references/source-hygiene.md`.
+- `role-spec` reads `blog-conventions`, `site-conventions`, and, for a post, `references/article-structures.md` and `references/voice-reference.md`.
+- `role-review` reads `blog-conventions`, `site-conventions`, `references/revision-protocol.md`, `references/fact-checking.md`, and `references/source-hygiene.md`.
+- `role-write` reads `blog-conventions`, `references/voice-reference.md`, and `references/source-hygiene.md`.
+- `role-frontend` reads `site-conventions`.
+- `role-test` reads `blog-conventions` and `site-verification`.
 
 ## Refused
 
@@ -47,7 +67,14 @@ These were looked up on skills.sh and were not installed.
 - **writing-plans** (obra/superpowers) and **implement-spec** (mattpocock/skills). They are for code, tests, and ticket graphs.
 - **content-blog** (vstorm-co/content-skills), **editorial-copy** (srstomp/copyskills), **medium-style-blog-writer** (samihalawa/medium-style-blog-writer-skill), and **house-style** (RightBlogger/bloggingskills). They push a marketing or SEO voice, ask which template to use, or ban punctuation this blog already uses. Those source repos are small.
 - Pull-request review skills. `role-review` reviews the spec. The human reviews the pull request.
-- **skill-creator** (anthropics/skills) and **frontend-design** (anthropics/skills). This setup does not author more skills, and it does not change the layout.
+- **frontend-design** (anthropics/skills). It would restyle the page away from the HTML already in this repo.
+- **skill-creator** (anthropics/skills). The project skills for this repo are written here. That catalog skill is not installed.
+- **pre-publish-checker** (notque/vexjoy-agent). It is Hugo, it is aimed at SEO, and it treats the job as publishing.
+- **publishing-checklist** (Christos-Hadjinikolis/Christos-Hadjinikolis.github.io). It is another person's Jekyll site, it calls `make build`, and it is framed as a deploy.
+- **jekyll** (n-n-code/n-n-code-skills). It authorizes editing the site beyond the files a spec lists.
+- **verify-build** (heyeddi-com/heyeddi-skills). It is npm and Vite.
+- **static-seo** (jdevalk/skills), **website-quality-check** (oocx/tfplan2md), **markdown-post-frontmatter-validation** (jacob-balslev/skill-graph), and **write-check-links** (jeffabailey/skills-writing). They target other sites, other generators, or extra tools.
+- **docmeta** (hawkeyexl/docmeta). It is a new Node dependency, and its default schema is not this blog's front matter.
 
 ## Maintenance
 

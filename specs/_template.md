@@ -1,5 +1,9 @@
 # NNN — Title
 
+## Type
+
+## Allowed files
+
 ## Brief
 
 ## Reader
@@ -19,3 +23,5 @@
 ## Assumptions
 
 ## Review
+
+## Test

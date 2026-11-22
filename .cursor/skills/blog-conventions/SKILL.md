@@ -14,7 +14,7 @@ One new post per issue:
 
 `_posts/YYYY-MM-DD-slug.md`
 
-`YYYY-MM-DD` is the run date. The slug is lowercase, hyphens, at most 40 characters. The index lists `site.posts`. Do not edit the index.
+`YYYY-MM-DD` is the run date. The slug is lowercase, hyphens, at most 40 characters. The index lists `site.posts`. A post does not edit the index.
 
 ## Front matter
 
@@ -45,4 +45,4 @@ Match the posts already in `_posts/`. Read them before drafting.
 
 ## Do not touch
 
-`_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, and existing posts.
+`role-write`, and anyone drafting a post, does not edit `_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, or an existing post. A site ticket follows `site-conventions`. `role-frontend` may edit `_config.yml`, `index.html`, or `_layouts/post.html` only when the spec lists that path. It never edits `Gemfile` or an existing post.

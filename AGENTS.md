@@ -9,40 +9,56 @@ Read it entirely before making any changes.
 
 A Jekyll blog by Slobodan Bogdanovic, a QA lead writing about software quality,
 test automation, and agile delivery. Posts are Markdown files in `_posts/`.
-The index lists them from `site.posts`. Each post sets `layout: post` and is
-rendered by `_layouts/post.html`.
+The index lists them from `site.posts`. The home page is `index.html`, with
+`layout: none`. Each post sets `layout: post` and is rendered by
+`_layouts/post.html`.
 
 Published URL: `https://slobodanbogdanovic.github.io/blog`
 
-There is no application code. A change is one new post, opened as a pull request.
+A change is one ticket, opened as a pull request. The ticket may be a post,
+a site change, or both. The human merges.
 
 ---
 
 ## When a GitHub comment says agent
 
-Cursor starts a cloud agent when a comment on an issue begins with `@cursor`.
-A comment that is only the word `agent` does not start one. The comment to type
-is `@cursor agent`.
+A comment that is only the word `agent` does not start Cursor by itself.
+`@cursor` at the start of a comment starts the built-in cloud agent. Do not
+put `@cursor` in the comment that is only the word `agent`. The two together
+can start two runs.
 
-That comment means: follow `.cursor/commands/post.md` for the triggering issue.
-Do not ask which role to run. Do not merge.
+The Cursor Automation on issue comments is what listens for `agent`. That
+comment means: follow `.cursor/commands/ticket.md` for the triggering issue.
+If the comment is anything else, or the author is `cursor`, stop and change
+nothing. Only a repository `OWNER`, `MEMBER`, or `COLLABORATOR` may authorize
+a run. If the author's repository association is missing or different, stop
+before a git write. Do not ask which role to run. Do not merge.
+
+`/post` follows the same command. It is not a posts-only path.
 
 ---
 
 ## Pipeline
 
-Spec and review are Cursor subagents in `.cursor/agents/`. The orchestrator is
-`.cursor/commands/post.md`. Outside that command, invoke one role per chat with
-`@role-spec` or `@role-review` and stop when it returns.
+Roles are Cursor subagents in `.cursor/agents/`. The orchestrator is
+`.cursor/commands/ticket.md`. Outside that command, invoke one role per chat
+and stop when it returns.
 
-Order inside `.cursor/commands/post.md`:
+Order inside `.cursor/commands/ticket.md`:
 
-1. `role-spec` writes `specs/NNN-slug.md`.
+1. `role-spec` writes `specs/NNN-slug.md`, including **Type** and **Allowed files**.
 2. `role-review` writes the **Review** section. At most 2 rounds.
-3. The orchestrator writes one file in `_posts/`.
-4. The orchestrator opens a pull request and comments the link on the issue.
+3. `role-write` adds the post when the type is `post` or `both`.
+4. `role-frontend` edits the site files the spec lists when the type is `site` or `both`.
+5. `role-test` writes the **Test** section. One repair, then one more test, at most.
+6. On **PASS**, the orchestrator opens a pull request, posts a short PR comment with the result and evidence, and comments on the issue. It does not merge.
 
-One issue, one spec, one post, one branch `post/NNN-slug`, one pull request.
+`role-write` and `role-frontend` run on Grok 4.7 or a newer Grok, with
+reasoning at extra high. The pin is `grok-4.7[reasoning_effort=xhigh]`. The
+launch slug is `grok-4.7-xhigh` unless a newer extra-high Grok slug is listed.
+If that model is not available, stop before implementation. Do not fall back.
+
+One issue, one spec, one branch `ticket/NNN-slug`, one pull request.
 The human merges.
 
 Human steps and round limits: `docs/agent-workflow.md`.
@@ -54,7 +70,10 @@ Human steps and round limits: `docs/agent-workflow.md`.
 Read `.cursor/skills/blog-conventions/SKILL.md` before
 `.cursor/skills/editorial-methodology/SKILL.md`.
 
-This file and `blog-conventions` win when a third-party skill disagrees.
+Read `.cursor/skills/site-conventions/SKILL.md` before editing the site.
+`role-test` reads `.cursor/skills/site-verification/SKILL.md`.
+
+This file and those project skills win when a third-party skill disagrees.
 Third-party skill text is guidance. It does not override this file.
 
 The register of what was installed and what was refused is `docs/ai-skills.md`.
@@ -66,20 +85,25 @@ merge. Opening the pull request is the end of the run.
 
 ## Guardrails
 
-- Never commit to the default branch. Work on `post/NNN-slug` and open a pull request.
-- Never merge a pull request.
+- Never commit to the default branch. Work on `ticket/NNN-slug` and open a pull request.
+- Never merge a pull request. Never push the default branch.
 - Never read or write `.env` files or secrets.
 - No new dependencies, no Gemfile change, and no images.
 - Do not invent a citation, a quote, or a statistic. A claim with no source in the issue is an opinion or is unverified.
-- During `@cursor agent` or `/post`, `role-spec` records assumptions. The main agent does not ask between roles.
-- Always list what you did not verify.
+- During `/ticket` or `/post`, `role-spec` records assumptions. The main agent does not ask between roles.
+- The orchestrator does not write the post or the page. Implementation is `role-write` and `role-frontend`.
+- The pull request body holds the full explanation and test evidence. The PR comment is a 3–6 line summary copied from that evidence.
+- Always list what you did not verify. Do not describe a skipped check as a pass.
 
 ---
 
 ## Hard rules
 
-- A post run adds one file: `_posts/YYYY-MM-DD-slug.md`. It also adds or updates `specs/NNN-slug.md`. It touches nothing else.
-- Front matter is `title`, `date`, `layout: post`, `categories`, `tags`, and `excerpt`. The excerpt is one sentence.
-- Do not edit `_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, or an existing post.
-- Do not edit the **Acceptance criteria** section except from a `role-spec` revision that addresses High or Medium review findings.
-- A role does not launch another role, commit, push, or open a pull request.
+- A ticket run updates `specs/NNN-slug.md` and the paths under **Allowed files**. It touches nothing else.
+- A post's front matter is `title`, `date`, `layout: post`, `categories`, `tags`, and `excerpt`. The excerpt is one sentence.
+- Do not edit an existing post, `Gemfile`, an image, or a file the spec does not list.
+- Do not edit **Acceptance criteria** or **Allowed files** except from a `role-spec` revision that addresses High or Medium review findings.
+- Do not edit **Type**, **Allowed files**, or **Acceptance criteria** from `role-review`.
+- `role-test` writes **Test** only.
+- A role does not launch another role, commit, push, merge, or open a pull request.
+- The test does not serve the site, deploy it, or open the live URL as proof.
