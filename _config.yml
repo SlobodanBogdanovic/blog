@@ -5,15 +5,15 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-title: "Slobodan Bogdanovic"
-name: "Slobodan Bogdanovic"
-description: "QA Lead | Test Automation | Agile Delivery"
+title: "Slobodan Bogdanović"
+name: "Slobodan Bogdanović"
+description: "Quality & Delivery Lead. Writing about software quality and engineering."
 url: "https://slobodanbogdanovic.github.io"
 baseurl: "/blog"
 
 author:
-  name: "Slobodan Bogdanovic"
-  bio: "QA Lead, Test Automation, Agile Delivery. Writing about software quality, engineering, and delivery."
+  name: "Slobodan Bogdanović"
+  bio: "Quality & Delivery Lead. Writing about software quality and engineering."
   location: "Serbia"
   links:
     - label: "LinkedIn"
