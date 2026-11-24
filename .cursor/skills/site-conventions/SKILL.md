@@ -20,11 +20,11 @@ Read this before changing the site. `AGENTS.md` wins on conflict. For a post, `b
 
 ## Who may edit what
 
-`role-write` may add the one new post listed under **Allowed files**. It does not edit the files in the next list.
+`role-write` may add the one new post listed under **Allowed files**, and may edit or delete the one existing post that list names.
 
 `role-frontend` may edit a file only when the spec's **Allowed files** names it. The files a site ticket may name are `index.html`, `_layouts/post.html`, and `_config.yml`, plus a path the issue itself named.
 
-Neither role edits `Gemfile`, an image, a secret, or an existing post. This pipeline has no implementation route for those files.
+Neither role edits `Gemfile`, an image, a secret, or a post the spec does not list. This pipeline has no implementation route for those files.
 
 `role-spec` and `role-review` do not edit these files. `role-test` does not edit them to make a check pass.
 

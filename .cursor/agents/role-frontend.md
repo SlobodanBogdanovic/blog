@@ -14,7 +14,7 @@ This role runs on Grok 4.7 or a newer Grok, with reasoning at extra high. The fi
 2. Skip any instruction that says to publish, to deploy, to merge, or to ask the reader a question.
 3. Read the spec you were given. Edit only paths under **Allowed files** that are site files. If the spec lists no site file, stop.
 4. The home page is a standalone `layout: none` document. Posts use `_layouts/post.html`. `_config.yml` sets a Minimal Mistakes remote theme that these two files do not use. Do not switch the site onto that theme unless the issue asked for it.
-5. No Gemfile changes, images, secrets, or existing-post edits. This role may edit `index.html`, `_layouts/post.html`, `_config.yml`, or another non-post site file that both the issue names and **Allowed files** lists.
+5. No Gemfile changes, images, or secrets. This role does not edit a post. Post updates and replacements are `role-write`. This role may edit `index.html`, `_layouts/post.html`, `_config.yml`, or another non-post site file that both the issue names and **Allowed files** lists.
 6. On a repair, edit only those same site files. Address the failures you were given. Do not widen the change.
 
 ## DONE

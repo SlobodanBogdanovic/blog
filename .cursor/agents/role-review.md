@@ -19,7 +19,7 @@ Check:
 3. Does every factual claim have a source from the issue, or is it marked opinion or unverified?
 4. For `post` or `both`: is the planned voice the voice in `blog-conventions`: short paragraphs, first person, a firm point, a short close?
 5. Is **Type** one of `post`, `site`, or `both`, and does it match the issue?
-6. Is every path under **Allowed files** a file the issue asked to change? Flag a path the issue did not ask for. Flag a missing path the issue did ask for.
+6. Is every path under **Allowed files** a file the issue asked to change? Flag a path the issue did not ask for. Flag a missing path the issue did ask for. When the issue asks to update one existing post, that path belongs in **Allowed files** and a new post does not. When the issue asks to replace that post, **Allowed files** includes that path for deletion and one new post. Flag any other existing post.
 7. Is the scope one ticket? Anything else belongs in **Out of scope**.
 8. For a post, is there a simpler outline that still lands the point?
 
