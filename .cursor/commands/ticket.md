@@ -73,13 +73,13 @@ If the launcher has no model field, omit it. The agent file pin is `grok-4.7[rea
 
 `role-write` prompt:
 
-> You are invoked with `@role-write`. Implement only the new post listed under **Allowed files** in `specs/NNN-slug.md`. Follow that spec. Do not edit a site file. Do not commit, push, merge, or open a pull request. Touch no other file.
+> You are invoked with `@role-write`. Implement the post files listed under **Allowed files** in `specs/NNN-slug.md`. That is the new post, and the one existing post the spec lists for an update or a deletion. Follow that spec. Do not edit a site file. Do not commit, push, merge, or open a pull request. Touch no other file.
 
 `role-frontend` prompt:
 
 > You are invoked with `@role-frontend`. Edit only the site files listed under **Allowed files** in `specs/NNN-slug.md`. Follow that spec. Do not write a post. Do not commit, push, merge, or open a pull request. Touch no file that the spec does not list.
 
-If the launched role fails, or an allowed file it was supposed to add is missing, stop.
+If the launched role fails, or an allowed file it was supposed to add is missing, or an existing post it was supposed to delete is still present, stop.
 
 ## 4. Test
 
@@ -95,9 +95,9 @@ On **PASS**, go to section 6.
 
 On **FAIL**, repair only a file an implementer just wrote:
 
-- If a failing check is in the new post, launch `role-write` once with model `grok-4.7-xhigh` (or the newer extra-high Grok slug you used in section 3). Prompt:
+- If a failing check is in a post file listed under **Allowed files**, launch `role-write` once with model `grok-4.7-xhigh` (or the newer extra-high Grok slug you used in section 3). Prompt:
 
-> You are invoked with `@role-write`. Fix only the new post listed under **Allowed files** in `specs/NNN-slug.md`. Failures: `FAILURES`. Do not edit a site file. Do not commit, push, merge, or open a pull request. Touch no other file.
+> You are invoked with `@role-write`. Fix only the post files listed under **Allowed files** in `specs/NNN-slug.md`. Failures: `FAILURES`. Do not edit a site file. Do not commit, push, merge, or open a pull request. Touch no other file. A listed deletion stays deleted.
 
 - If a failing check is in a site file that role wrote, launch `role-frontend` once with the same model. Prompt:
 
@@ -130,7 +130,7 @@ If the verdict is **FAIL**, do not run the commit, push, or pull request steps b
 Before committing, inspect `git status`, `git diff`, and recent `git log` messages.
 
 - Commit 1: `specs/NNN-slug.md` only.
-- Commit 2: the implemented files only. Those are the paths under **Allowed files** that exist. Do not stage the spec again.
+- Commit 2: the implemented files only. Stage each path under **Allowed files** that exists, and stage a deletion when **Allowed files** lists an existing post the spec says to remove. Do not stage the spec again.
 
 If commit 2 would be empty, stop. Do not push.
 

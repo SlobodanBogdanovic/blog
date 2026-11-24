@@ -48,7 +48,7 @@ Order inside `.cursor/commands/ticket.md`:
 
 1. `role-spec` writes `specs/NNN-slug.md`, including **Type** and **Allowed files**.
 2. `role-review` writes the **Review** section. At most 2 rounds.
-3. `role-write` adds the post when the type is `post` or `both`.
+3. `role-write` adds the post when the type is `post` or `both`. When the issue names one existing post and asks to update or replace it, this role edits that file, or deletes it and adds the new one.
 4. `role-frontend` edits the site files the spec lists when the type is `site` or `both`.
 5. `role-test` writes the **Test** section. One repair, then one more test, at most.
 6. On **PASS**, the orchestrator opens a pull request, posts a short PR comment with the result and evidence, and comments on the issue. It does not merge.
@@ -101,7 +101,7 @@ merge. Opening the pull request is the end of the run.
 
 - A ticket run updates `specs/NNN-slug.md` and the paths under **Allowed files**. It touches nothing else.
 - A post's front matter is `title`, `date`, `layout: post`, `categories`, `tags`, and `excerpt`. The excerpt is one sentence.
-- Do not edit an existing post, `Gemfile`, an image, or a file the spec does not list.
+- Do not edit `Gemfile`, an image, or a file the spec does not list. Do not edit a post the issue did not name. When the issue names one existing post and asks to update or replace it, the spec lists that file. The implementer may edit it, or delete it and add the one new post.
 - Do not edit **Acceptance criteria** or **Allowed files** except from a `role-spec` revision that addresses High or Medium review findings.
 - Do not edit **Type**, **Allowed files**, or **Acceptance criteria** from `role-review`.
 - `role-test` writes **Test** only.

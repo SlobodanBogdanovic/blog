@@ -45,4 +45,4 @@ Match the posts already in `_posts/`. Read them before drafting.
 
 ## Do not touch
 
-`role-write`, and anyone drafting a post, does not edit `_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, or an existing post. A site ticket follows `site-conventions`. `role-frontend` may edit `_config.yml`, `index.html`, or `_layouts/post.html` only when the spec lists that path. It never edits `Gemfile` or an existing post.
+`role-write` may add the one new post, and may edit or delete the one existing post the spec lists. It does not edit `_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, or a post the spec does not list. A site ticket follows `site-conventions`. `role-frontend` may edit `_config.yml`, `index.html`, or `_layouts/post.html` only when the spec lists that path. It never edits `Gemfile` or a post.
