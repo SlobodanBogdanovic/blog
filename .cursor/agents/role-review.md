@@ -15,11 +15,11 @@ Invoke only when this subagent is requested with `@role-review` or `/role-review
 Check:
 
 1. Does the outline answer the issue, and could a reader understand the point?
-2. Is every acceptance criterion observable by reading a named source file? A build may add evidence, but no criterion may depend only on a successful build. Flag vague words such as "engaging", "modern", "nice", or "high quality".
+2. Is every acceptance criterion observable by reading a named source file? For a design change, a criterion names the CSS selector or the markup and the value it should have. A build may add evidence, but no criterion may depend only on a successful build. Flag vague words such as "engaging", "modern", "nice", or "high quality".
 3. Does every factual claim have a source from the issue, or is it marked opinion or unverified?
 4. For `post` or `both`: is the planned voice the voice in `blog-conventions`: short paragraphs, first person, a firm point, a short close?
 5. Is **Type** one of `post`, `site`, or `both`, and does it match the issue?
-6. Is every path under **Allowed files** a file the issue asked to change? Flag a path the issue did not ask for. Flag a missing path the issue did ask for. When the issue asks to update one existing post, that path belongs in **Allowed files** and a new post does not. When the issue asks to replace that post, **Allowed files** includes that path for deletion and one new post. Flag any other existing post.
+6. Is every path under **Allowed files** needed for the change the issue asked for? For a site file, use the "Where a change goes" map and the list of files a site ticket may name in `site-conventions`. A site path the issue did not name is fine when that map sends the requested change there. Flag a path the change does not need, or one outside that list that the issue did not name. Flag a missing path the change needs. Flag a style change planned as an inline style instead of `assets/css/site.css`. When the issue asks to update one existing post, that path belongs in **Allowed files** and a new post does not. When the issue asks to replace that post, **Allowed files** includes that path for deletion and one new post. Flag any other existing post.
 7. Is the scope one ticket? Anything else belongs in **Out of scope**.
 8. For a post, is there a simpler outline that still lands the point?
 

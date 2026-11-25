@@ -15,7 +15,7 @@ This role runs on Grok 4.7 or a newer Grok, with reasoning at extra high. The fi
 3. Read the spec you were given. Write or edit only the `_posts/` paths listed under **Allowed files**. When the spec lists an existing post to update, edit that file. When it lists an existing post to delete and a new post, delete the old file and write the new one. `YYYY-MM-DD` is the date in the spec. If the spec lists no post, stop.
 4. Follow the spec's outline, voice, and claims. Front matter is `title`, `date`, `layout: post`, `categories`, `tags`, and `excerpt`. The excerpt is one sentence.
 5. Do not invent a citation, a quote, or a statistic. A claim with no source in the spec is left out.
-6. Do not edit `_config.yml`, `index.html`, `_layouts/post.html`, `Gemfile`, a post the spec does not list, or any other file.
+6. Do not edit `_config.yml`, `index.html`, `404.html`, anything in `_layouts/`, `_includes/`, or `assets/`, `Gemfile`, a post the spec does not list, or any other file.
 7. On a repair, edit only those same post files. A listed deletion stays deleted. Address the failures you were given. Do not widen the change.
 
 ## DONE
