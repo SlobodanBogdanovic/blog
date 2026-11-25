@@ -32,4 +32,4 @@ Neither role edits `Gemfile`, an image, a secret, or a post the spec does not li
 
 Read `index.html` and `_layouts/post.html` before changing either. Match the type, the measure, and the quiet page that are already there, unless the issue asks for a different look. Keep the post list driven by `site.posts`. Do not add a second copy of a post title by hand.
 
-No new gems. No images. No secrets.
+No new gems. No secrets. A post may include a photograph the author placed in `assets/images/`. A ticket does not add one unless the issue names that file.

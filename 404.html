@@ -1,0 +1,21 @@
+---
+layout: none
+permalink: /404.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <main class="shell">
+    <p class="cmd"><span class="prompt"><span class="user">slobodan</span>@<span class="host">blog</span>:<span class="path">~</span>$</span> cat this-page</p>
+    <p>cat: this-page: No such file or directory</p>
+
+    <p class="cmd"><span class="prompt"><span class="user">slobodan</span>@<span class="host">blog</span>:<span class="path">~</span>$</span> ls</p>
+    <p class="links"><a href="{{ '/' | prepend: site.baseurl }}">home</a></p>
+
+    <p class="cmd"><span class="prompt"><span class="user">slobodan</span>@<span class="host">blog</span>:<span class="path">~</span>$</span> <span class="cursor" aria-hidden="true">█</span></p>
+  </main>
+</body>
+</html>

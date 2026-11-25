@@ -88,7 +88,7 @@ merge. Opening the pull request is the end of the run.
 - Never commit to the default branch. Work on `ticket/NNN-slug` and open a pull request.
 - Never merge a pull request. Never push the default branch.
 - Never read or write `.env` files or secrets.
-- No new dependencies, no Gemfile change, and no images.
+- No new dependencies and no Gemfile change. A post may include a photograph the author placed in `assets/images/`. A ticket does not add one unless the issue names that file.
 - Do not invent a citation, a quote, or a statistic. A claim with no source in the issue is an opinion or is unverified.
 - During `/ticket` or `/post`, `role-spec` records assumptions. The main agent does not ask between roles.
 - The orchestrator does not write the post or the page. Implementation is `role-write` and `role-frontend`.
