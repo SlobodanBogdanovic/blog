@@ -7,9 +7,21 @@ A GitHub issue is the brief. A comment starts the ticket pipeline. The agent imp
 1. Install the Cursor GitHub app on this repo and allow cloud agents to open pull requests.
 2. Put this pipeline on the default branch. A cloud agent checks out that branch. It cannot see uncommitted files.
 3. Save the Cursor Automation in the Agents Window after that. The draft is below. This file does not turn the automation on.
-4. Open a GitHub issue. The title is the task. The body says who it is for, what to change, and any sources. Add the issue to the GitHub Project. The project board does not start the agent. The issue does.
+4. Open a GitHub issue. The title is the task. The body says who it is for, what to change, and any sources. Add the issue to the GitHub Project if you track work there. Adding the issue to the project, assigning it, or moving its card does not start the agent. Only the `agent` comment in the next step does.
 5. Comment on that issue with the single word `agent`. Do not also write `@cursor` in that comment. `@cursor` at the start of a comment starts a second, built-in cloud agent.
 6. Read the issue comment, the pull request body, and the short comment on the pull request. The body contains the full test evidence. The PR comment gives you the result in a few lines. Merge the pull request yourself when you want GitHub Pages to update.
+
+## Writing a design issue
+
+A design issue is a ticket of type `site`. You do not need to name files. `role-spec` maps the request to files with `site-conventions`. Styles go to `assets/css/site.css`.
+
+Say three things in the body:
+
+- Which page: the home page, the post page, the 404 page, or every page.
+- What should look different, with a value when you have one, for example "post titles one step larger" or "links in the green accent".
+- How you would check it by looking at the page.
+
+When you give no value, the spec picks one and records it as an assumption. Read the **Assumptions** in the pull request before you merge. A design ticket cannot add a font, an image, or a gem.
 
 ## Automation
 

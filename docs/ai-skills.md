@@ -34,10 +34,11 @@ Vetting for a third-party skill:
 
 ### site-conventions
 
-- Topic: the home page, the post layout, the unused remote theme, and which role may edit which file
+- Topic: the home page, the post layout, the 404 page, the shared head include and stylesheet, the unused remote theme, where a design change goes, and which role may edit which file
 - Source: this repo
 - License: project-authored
 - Date added: 2026-11-22
+- Updated: 2026-11-25, to describe `_includes/head.html`, `assets/css/site.css`, and the self-hosted fonts, and to let a site ticket list those files without the issue naming them
 - Reason: no catalog skill knows this home page or the split between `index.html` and the Minimal Mistakes setting in `_config.yml`
 - Review: written for this repo. `role-spec`, `role-review`, and `role-frontend` read it. It does not download further rules or ask for a secret.
 
