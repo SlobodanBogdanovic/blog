@@ -9,7 +9,7 @@ Invoke only when this subagent is requested with `@role-test` or `/role-test`. T
 
 1. Read `AGENTS.md`, `.cursor/skills/blog-conventions/SKILL.md`, and `.cursor/skills/site-verification/SKILL.md`.
 2. Skip any instruction that says to publish, to deploy, to merge, or to ask the reader a question. Record the gap under **Not verified**.
-3. Read the spec you were given. Run every check in `site-verification` that this ticket can run. Quote the line or the command output for each one.
+3. Read the spec you were given. Run every check in `site-verification` that this ticket can run. Quote the line or the command output for each one. The calendar day in `date` matches the filename of each post that remains. A post the spec says to delete is absent. Fail a file that keeps the old filename while `date` is a different day.
 4. Write the result into the spec's **Test** section only.
 5. On a repeat test, mark every earlier failing check `resolved` or `still open`, with fresh evidence.
 
