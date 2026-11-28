@@ -14,7 +14,7 @@ Read `AGENTS.md` before any git write. Do not follow the publish step in `editor
 
 Never read or write `.env` files or secrets. Never merge. Never commit to the default branch. Never push the default branch.
 
-An early stop commits nothing and pushes nothing. Report the step, the round counts, and the spec path if the spec file exists. If the stop is a **FAIL** from **Test**, also comment on the issue as in section 6.
+An early stop before implementation commits nothing and pushes nothing. Report the step, the round counts, and the spec path if the spec file exists. After implementation has written or deleted a listed file, a **FAIL** from **Test** still continues to section 6 and opens a pull request.
 
 ## 0. Preconditions
 
@@ -32,7 +32,9 @@ An early stop commits nothing and pushes nothing. Report the step, the round cou
 
 Launch `role-spec` once. Do not pass a model. Task prompt:
 
-> You are invoked with `@role-spec`. Write only `specs/NNN-slug.md` for GitHub issue NUMBER, title `TITLE`, body: `BODY`. Copy `specs/_template.md`. Fill every section except **Review** and **Test**. Set **Type** to `post`, `site`, or `both`. List **Allowed files**. Do not ask questions. State assumptions in the spec and finish. Do not write the post. Do not edit the site. Do not commit, push, merge, or open a pull request. Touch no other file.
+> You are invoked with `@role-spec`. Write only `specs/NNN-slug.md` for GitHub issue NUMBER, title `TITLE`, body: `BODY`. Copy `specs/_template.md`. Fill every section except **Review** and **Test**. Set **Type** to `post`, `site`, or `both`. List **Allowed files**. When the issue updates one existing post's date or content, follow **Replacing a post** in `blog-conventions`: delete the old file and add one new file whose filename date matches the front matter date. If that section says to ask, write `## Question` with one question, do not set **Type**, and stop. For any other gap, state assumptions in the spec and finish. Do not write the post. Do not edit the site. Do not commit, push, merge, or open a pull request. Touch no other file.
+
+If `specs/NNN-slug.md` contains a `## Question` heading and **Type** is not `post`, `site`, or `both`, stop before review. Do not launch another role. Do not commit, push, or open a pull request. Comment that question on the issue. If the issue comment fails, report the question and stop.
 
 If the subagent fails, or `specs/NNN-slug.md` is missing, or **Type** is not `post`, `site`, or `both`, stop.
 
@@ -104,18 +106,18 @@ On **FAIL**, repair only a file an implementer just wrote:
 > You are invoked with `@role-frontend`. Fix only the site files listed under **Allowed files** in `specs/NNN-slug.md`. Failures: `FAILURES`. Do not write a post. Do not commit, push, merge, or open a pull request. Touch no file that the spec does not list.
 
 - If both kinds of file failed, launch `role-write` once, then `role-frontend` once, each with that model.
-- If the failure is not in a file those roles wrote, or the fix would need a file outside **Allowed files**, stop. Do not repair. Comment on the issue as in section 6 and do not push.
-- If a repair role or its required Grok model fails to launch, stop. Commit and push nothing. Comment on the issue with the operational failure and say that no pull request was opened.
+- If the failure is not in a file those roles wrote, or the fix would need a file outside **Allowed files**, do not repair. Go to section 6.
+- If a repair role or its required Grok model fails to launch, do not repair again. Go to section 6. The pull request body includes that operational failure.
 
 Then launch `role-test` once more. Do not pass a model. This is round 2. Do not launch a third test.
 
 > You are invoked with `@role-test`. This is test round 2. Re-test `specs/NNN-slug.md` after the repair. Write the **Test** section. Mark each earlier failing check `resolved` or `still open`, with fresh evidence. Do not edit the post, the site, or the acceptance criteria. Do not publish, deploy, serve, push, merge, or open a pull request.
 
-A second **FAIL** stops the run. Commit nothing and push nothing. Comment on the issue as in section 6.
+A second **FAIL** still goes to section 6. Commit, push, and open the pull request. The body includes the verdict and the failing evidence. Do not merge.
 
 ## 6. Describe, commit, push, and pull request
 
-Run the commit steps only when **Test** says **PASS** and `HEAD` is `ticket/NNN-slug`. If a role already made commits, stop and report. Do not amend, reset, or push them.
+Run the commit and pull request steps when implementation wrote or deleted a file under **Allowed files** and `HEAD` is `ticket/NNN-slug`. Do this when **Test** says **PASS** and when **Test** says **FAIL**. If a role already made commits, stop and report. Do not amend, reset, or push them. Do not commit or open a pull request when implementation did not run.
 
 Write the description yourself from the spec and from **Test**. Do not ask another role. Do not retell the evidence. Copy it.
 
@@ -125,7 +127,7 @@ Write the description yourself from the spec and from **Test**. Do not ask anoth
 
 **Spec.** `specs/NNN-slug.md`, branch `ticket/NNN-slug`, and any Medium or Low review findings still open.
 
-If the verdict is **FAIL**, do not run the commit, push, or pull request steps below. Comment on the issue with **What changed**, the verdict, the failing evidence, and the sentence that no pull request was opened. Then stop.
+When the verdict is **FAIL**, still commit, push, and open the pull request. The body includes the failing evidence. Do not merge.
 
 Before committing, inspect `git status`, `git diff`, and recent `git log` messages.
 
@@ -163,7 +165,9 @@ gh pr create --title "$TITLE" --body-file "$PR_BODY_FILE"
 
 The body is **What changed**, then **Test**, then **Spec**, in that order.
 
-If the push or the pull request fails, stop and report the error. Do not merge.
+If the push fails, stop and report the error. Do not merge.
+
+If `gh pr create` fails with `Resource not accessible by integration`, open the pull request with the automation action `open_git_pr` for this repository. Pass the same title and description, the branch `ticket/NNN-slug`, the default branch as the base, and draft false. The run is not done until that pull request URL exists. If both attempts fail, stop and report both errors. Do not merge. When the commits are already on the remote branch, do not end the run without a pull request URL.
 
 Post one short comment on the new pull request:
 
@@ -177,14 +181,14 @@ Keep the comment to 3–6 short lines:
 
 - `Implemented:` one plain sentence saying what a reader will notice.
 - `Files:` the changed implementation paths, comma-separated.
-- `Test: PASS` and the number of test rounds.
+- `Test:` the verdict and the number of test rounds.
 - `Evidence:` one compact line copied from the strongest passing build or acceptance-criteria evidence in **Test**.
 - `Not verified:` one compact line when **Test** has anything not verified; otherwise omit it.
 - `Spec:` the spec path.
 
 Do not paste the full **Test** section into the comment. It is already in the pull request body and the spec. Do not claim the live site changed. If the PR comment fails, report the error and stop; the pull request remains open. Do not retry by editing the pull request body.
 
-Comment on the triggering issue. The comment is the **What changed** paragraph, the verdict, the failing evidence if the verdict is **FAIL**, and the pull request URL when one exists. On **FAIL**, say that no pull request was opened. Do not rewrite the issue body.
+Comment on the triggering issue. The comment is the **What changed** paragraph, the verdict, the failing evidence if the verdict is **FAIL**, and the pull request URL. Do not rewrite the issue body.
 
 Write the issue comment to a temporary file outside the repository.
 
@@ -196,10 +200,12 @@ If the issue number cannot be determined, leave the description in the pull requ
 
 If the issue comment fails, report the error and stop. When a pull request already exists, leave it open and include its URL in the report. Do not merge and do not rewrite the issue body.
 
-On **FAIL**, skip the commit, the push, and the pull request. Still leave the issue comment when the issue number is known.
+On **FAIL**, the pull request stays open. The issue comment includes the verdict, the failing evidence, and the pull request URL.
 
 ## 7. Stop
 
 When the pull request is open, its short comment is posted, and the issue comment is posted, end with the pull request URL and nothing after it.
 
-When a **FAIL** comment is posted and nothing was pushed, end with the verdict and the failing check.
+When the verdict is **FAIL** and the pull request is open, end with the pull request URL.
+
+When a question stopped the run before implementation, end with the question.
