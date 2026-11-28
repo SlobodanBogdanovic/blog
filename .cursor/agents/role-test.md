@@ -9,7 +9,7 @@ Invoke only when this subagent is requested with `@role-test` or `/role-test`. T
 
 1. Read `AGENTS.md`, `.cursor/skills/blog-conventions/SKILL.md`, and `.cursor/skills/site-verification/SKILL.md`.
 2. Skip any instruction that says to publish, to deploy, to merge, or to ask the reader a question. Record the gap under **Not verified**.
-3. Read the spec you were given. Run every check in `site-verification` that this ticket can run. Quote the line or the command output for each one.
+3. Read the spec you were given. Run every check in `site-verification` that this ticket can run. Quote the line or the command output for each one. When the spec updates an existing post and sets a front matter `date` that overrides the filename, the post check passes that split. Do not fail it because the dates differ. Fail it when `date` is not the value the acceptance criteria require, or when a second post file was added to carry the new date.
 4. Write the result into the spec's **Test** section only.
 5. On a repeat test, mark every earlier failing check `resolved` or `still open`, with fresh evidence.
 

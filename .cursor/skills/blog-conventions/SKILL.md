@@ -16,6 +16,14 @@ One new post per issue:
 
 `YYYY-MM-DD` is the run date. The slug is lowercase, hyphens, at most 40 characters. The index lists `site.posts`. A post does not edit the index.
 
+A new post uses that same calendar day in the front matter `date`. When the issue gives a time of day, `date` may be `YYYY-MM-DD HH:MM:SS` and the calendar day still matches the filename.
+
+## Date override on an update
+
+When the issue names one existing post and asks to update it, the filename stays. When that issue also asks to change the date or the time, the front matter `date` is the new value and overrides the date in the filename. Jekyll uses that value for ordering and for `permalink: /:year/:month/:day/:title/`. Do not add a second file, and do not rename the post, to make the filename match.
+
+If the issue asks for a new date and does not give one, use the run date. If the issue gives a time, include it. If it does not, write the date only.
+
 ## Front matter
 
 ```yaml

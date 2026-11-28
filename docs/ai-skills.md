@@ -18,6 +18,7 @@ Vetting for a third-party skill:
 - Source: this repo
 - License: project-authored
 - Date added: 2026-11-21
+- Updated: 2026-11-28, so an update of an existing post can override the filename date from the front matter when the issue asks for a new date or time
 - Reason: no catalog skill knows `_posts/` or the existing posts
 - Review: written for this repo. `role-spec`, `role-review`, and `role-write` read it before the third-party skill. `role-frontend` follows `site-conventions` for site files.
 
@@ -48,6 +49,7 @@ Vetting for a third-party skill:
 - Source: this repo
 - License: project-authored
 - Date added: 2026-11-22
+- Updated: 2026-11-28, so the post check passes a front matter date that overrides the filename on an update the spec requires
 - Reason: the catalog checks are for other generators, or they end in a publish step
 - Review: written for this repo. `role-test` reads it. A local Jekyll build is a check. Deploy, serve, and merge are not.
 

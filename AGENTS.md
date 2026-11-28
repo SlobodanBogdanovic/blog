@@ -101,6 +101,7 @@ merge. Opening the pull request is the end of the run.
 
 - A ticket run updates `specs/NNN-slug.md` and the paths under **Allowed files**. It touches nothing else.
 - A post's front matter is `title`, `date`, `layout: post`, `categories`, `tags`, and `excerpt`. The excerpt is one sentence.
+- A new post uses the same calendar day in the filename and in `date`. When the issue asks to update one existing post and to change its date or time, the filename stays. The front matter `date` is the value the issue demands, or the run date when the issue changes the date and gives none. That value overrides the date in the filename. The test passes that override. A second post file is not added to carry the new date.
 - Do not edit `Gemfile`, an image, or a file the spec does not list. Do not edit a post the issue did not name. When the issue names one existing post and asks to update or replace it, the spec lists that file. The implementer may edit it, or delete it and add the one new post.
 - Do not edit **Acceptance criteria** or **Allowed files** except from a `role-spec` revision that addresses High or Medium review findings.
 - Do not edit **Type**, **Allowed files**, or **Acceptance criteria** from `role-review`.
